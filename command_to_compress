@@ -1,0 +1,3 @@
+Type "gs -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=setting -sOutputFile=output.pdf input.pdf" into the Terminal window, replacing "input.pdf" with the name of your PDF file and "setting" with a desired quality level, and then press "Enter."
+
+Quality level settings are "/screen," the lowest resolution and lowest file size, but fine for viewing on a screen; "/ebook," a mid-point in resolution and file size; "/printer" and "/prepress," high-quality settings used for printing PDFs.
