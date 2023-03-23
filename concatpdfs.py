@@ -1,9 +1,12 @@
-from PyPDF2 import PdfFileWriter, PdfFileReader
+from PyPDF2 import PdfFileWriter, PdfFileReader, PdfWriter, PdfReader
 import os
 
 def append_pdf(input, output):
-    [output.addPage(input.getPage(page_num)) \
-     for page_num in range(input.numPages)]
+    # [output.addPage(input.getPage(page_num)) \
+    #  for page_num in range(input.numPages)]
+
+    [output.add_page(input.pages[page_num]) \
+     for page_num in range(len(input.pages))]
 
 
 def pdf_splitter(path):
@@ -25,7 +28,8 @@ def pdf_splitter(path):
     print('Created: {}'.format(output_filename))
 
 
-output = PdfFileWriter()
+# output = PdfFileWriter()
+output = PdfWriter()
 dir = 'pdfs/'
 #to split pdfs uncomment below
 # pdf_splitter(dir+'Orignal.pdf')
@@ -37,6 +41,6 @@ for pdf in filter(lambda x: '.pdf' in x, sorted(os.listdir(dir))):
     #     page = reader.getPage(i)
     #     page.compressContentStreams()
     #     output.addPage(page)
-    append_pdf(PdfFileReader(open(dir+pdf, "rb")), output)
-
+    # append_pdf(PdfFileReader(open(dir+pdf, "rb")), output)
+    append_pdf(PdfReader(open(dir + pdf, "rb")), output)
 output.write(open("final.pdf", "wb"))
